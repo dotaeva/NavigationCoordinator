@@ -32,9 +32,9 @@ extension NavigationCoordinator {
     /// Dismisses the currently presented item or the top-most route.
     public static func dismiss() {
         let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
-        if let fullScreenCover = coordinator.typedFullScreenCover {
+        if coordinator.typedFullScreenCover != nil {
             coordinator.typedFullScreenCover = nil
-        } else if let sheet = coordinator.typedSheet {
+        } else if coordinator.typedSheet != nil {
             coordinator.typedSheet = nil
         }
     }

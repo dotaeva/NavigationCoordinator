@@ -84,11 +84,19 @@ AppCoordinator.present(.count(1), as: .fullScreenCover)
 ### Pomocné funkce
 
 **dismiss()**
-- Po zavolání vymaže a navrací `Routable` nacházející se na vrcholu `path`.
+- Po zavolání vymaže `Routable` nacházející se na vrcholu `path`.
 
 **Použití:**
 ```swift
 AppCoordinator.dismiss()
+```
+
+**pop()**
+- Po zavolání vymaže a navrací `Routable` nacházející se na vrcholu `path`.
+
+**Použití:**
+```swift
+AppCoordinator.pop()
 ```
 
 **popToRoot()**
