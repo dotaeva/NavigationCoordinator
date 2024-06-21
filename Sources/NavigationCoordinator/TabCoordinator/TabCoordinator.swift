@@ -34,7 +34,7 @@ public class TabCoordinator<T: TabRoutable>: CoordinatorBase {
 
 extension TabCoordinator {
     /// Returns current tabs.
-    /// - Returns: An array representing the current tabs of type `[T]`.
+    /// - Returns: An array representing the current tabs of type [T].
     public static var tabs: [T] {
         get {
             (CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>).typedTabs
@@ -48,7 +48,7 @@ extension TabCoordinator {
     }
     
     /// Returns the selected tab.
-    /// - Returns: The currently selected tab of type `T`.
+    /// - Returns: The currently selected tab of type T.
     public static var selectedTab: T? {
         (CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>).typedSelectedTab
     }
