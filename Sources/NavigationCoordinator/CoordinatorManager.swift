@@ -8,7 +8,7 @@
 import SwiftUI
 
 #if os(iOS)
-public class CoordinatorManager {
+internal class CoordinatorManager {
     private static var coordinators: [AnyHashable: CoordinatorBase] = [:]
 
     public static func coordinator<T: Routable>(for type: T.Type) -> Coordinator<T> {
