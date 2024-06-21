@@ -29,7 +29,6 @@ extension TabCoordinator {
     /// - Returns: A view displaying the tabs.
     public static func view() -> some View {
         let coordinator = CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>
-        coordinator.typedTabs = Array(T.allCases)
         return TabCoordinatorRootView(coordinator: coordinator)
     }
 }
