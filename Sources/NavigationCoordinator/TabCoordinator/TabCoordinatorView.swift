@@ -9,11 +9,12 @@ import SwiftUI
 
 #if os(iOS)
 fileprivate struct TabCoordinatorRootView<T: TabRoutable>: View {
-    @StateObject var coordinator: TabCoordinator<T> = {
+    @StateObject private var coordinator = CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>
+    
+    init() {
         let coordinator = CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>
         coordinator.typedTabs = Array(T.allCases)
-        return coordinator
-    }()
+    }
     
     var body: some View {
         TabView(selection: $coordinator.typedSelectedTab) {
