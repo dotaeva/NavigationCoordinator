@@ -8,7 +8,7 @@
 import SwiftUI
 
 #if os(iOS)
-public class TabCoordinator<T: TabRoutable>: CoordinatorBase {
+public class TabCoordinator<T: TabRoutable>: CoordinatorBase where T.AllCases: RandomAccessCollection {
     required init() {
         super.init()
     }
@@ -36,9 +36,7 @@ extension TabCoordinator {
     /// Returns current tabs.
     /// - Returns: An array representing the current tabs of type `[T]`.
     public static var tabs: [T] {
-        get {
-            (CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>).typedTabs
-        }
+        (CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>).typedTabs
     }
     
     /// Selects a specific tab.

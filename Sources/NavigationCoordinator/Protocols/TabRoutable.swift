@@ -9,7 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 public protocol TabRoutable: Routable, CaseIterable where AllCases: RandomAccessCollection {
-    associatedtype Body2 : View
-    @ViewBuilder var tabItemView: Self.Body2 { get }
+    associatedtype TabItemBody : View
+    @ViewBuilder var tabItemView: Self.TabItemBody { get }
 }
 #endif

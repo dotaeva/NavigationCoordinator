@@ -9,7 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 fileprivate struct TabCoordinatorRootView<T: TabRoutable>: View {
-    @StateObject var coordinator: TabCoordinator<T>
+    @ObservedObject var coordinator: TabCoordinator<T>
     
     var body: some View {
         TabView(selection: $coordinator.typedSelectedTab) {
