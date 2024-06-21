@@ -8,8 +8,8 @@
 import SwiftUI
 
 #if os(iOS)
-public class Coordinator<T: Routable>: CoordinatorBase {
-    override init() {
+public class NavigationCoordinator<T: Routable>: CoordinatorBase {
+    required init() {
         super.init()
     }
     
@@ -50,12 +50,12 @@ public class Coordinator<T: Routable>: CoordinatorBase {
     }
 }
 
-extension Coordinator {
+extension NavigationCoordinator {
     /// Returns the current navigation path.
     /// - Returns: An array representing the current path of type `[T]`.
     public static var path: [T] {
         get {
-            CoordinatorManager.coordinator(for: T.self).typedPath
+            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedPath
         }
     }
     
@@ -63,10 +63,10 @@ extension Coordinator {
     /// - Returns: The root of type `T`.
     public static var root: T? {
         get {
-            CoordinatorManager.coordinator(for: T.self).typedRoot
+            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedRoot
         }
         set {
-            CoordinatorManager.coordinator(for: T.self).typedRoot = newValue
+            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedRoot = newValue
         }
     }
 }

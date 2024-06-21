@@ -1,5 +1,5 @@
 //
-//  CoordinatorView.swift
+//  NavigationCoordinatorView.swift
 //  NavigationCoordinator
 //
 //  Created by Alexandr Valíček on 20.06.2024.
@@ -8,8 +8,8 @@
 import SwiftUI
 
 #if os(iOS)
-fileprivate struct CoordinatorRootView<T: Routable>: View {
-    @StateObject var coordinator: Coordinator<T>
+fileprivate struct NavigationCoordinatorRootView<T: Routable>: View {
+    @StateObject var coordinator: NavigationCoordinator<T>
     
     var body: some View {
         NavigationStack(path: $coordinator.typedPath) {
@@ -32,23 +32,22 @@ fileprivate struct CoordinatorRootView<T: Routable>: View {
         }
     }
 }
-
-extension Coordinator {
+extension NavigationCoordinator {
     /// Creates a view with the specified root.
     /// - Parameter root: The root view to set.
     /// - Returns: A view displaying the root.
     public static func view(root: T) -> some View {
-        let coordinator = CoordinatorManager.coordinator(for: T.self)
+        let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
         coordinator.root = root
-        return CoordinatorRootView(coordinator: coordinator)
+        return NavigationCoordinatorRootView(coordinator: coordinator)
     }
     
     /// Creates a view with the Coordinators' root.
     /// - Parameter root: The root view to set.
     /// - Returns: A view displaying the root.
     public static func view() -> some View {
-        let coordinator = CoordinatorManager.coordinator(for: T.self)
-        return CoordinatorRootView(coordinator: coordinator)
+        let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
+        return NavigationCoordinatorRootView(coordinator: coordinator)
     }
 }
 #endif

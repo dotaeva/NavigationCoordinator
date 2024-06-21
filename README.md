@@ -29,7 +29,7 @@ extension Destination {
 ### Nastavení aliasu pro snadnější použití
 
 ```swift
-typealias AppCoordinator = Coordinator<Destination>
+typealias AppCoordinator = NavigationCoordinator<Destination>
 ```
 
 ## Použití pro zobrazení

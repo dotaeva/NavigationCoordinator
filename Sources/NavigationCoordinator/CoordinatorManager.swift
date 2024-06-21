@@ -11,20 +11,20 @@ import SwiftUI
 internal class CoordinatorManager {
     private static var coordinators: [AnyHashable: CoordinatorBase] = [:]
 
-    public static func coordinator<T: Routable>(for type: T.Type) -> Coordinator<T> {
+    public static func coordinator<T: Routable, C: CoordinatorBase>(for type: T.Type) -> C {
         let key = String(describing: T.self)
-        if let coordinator = coordinators[key] as? Coordinator<T> {
+        if let coordinator = coordinators[key] as? C {
             return coordinator
         } else {
-            let coordinator = Coordinator<T>()
+            let coordinator = C()
             coordinators[key] = coordinator
             return coordinator
         }
     }
 
-    public static func createCoordinator<T: Routable>(for type: T.Type) -> Coordinator<T> {
+    public static func createCoordinator<T: Routable, C: CoordinatorBase>(for type: T.Type) -> C {
         let key = String(describing: T.self)
-        let coordinator = Coordinator<T>()
+        let coordinator = C()
         coordinators[key] = coordinator
         return coordinator
     }

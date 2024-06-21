@@ -14,6 +14,6 @@ public class CoordinatorBase: ObservableObject {
     @Published public var fullScreenCover: AnyHashable?
     @Published public var sheet: AnyHashable?
 
-    init() { }
+    required public init() { }
 }
 #endif
