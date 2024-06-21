@@ -32,6 +32,16 @@ fileprivate struct TabCoordinatorRootView<T: TabRoutable>: View {
 }
 
 extension TabCoordinator {
+    /// Creates a view with all cases of the `TabRoutable` enum with specified selected tab.
+    /// - Parameter selection: The tab to select.
+    /// - Returns: A view displaying the tabs.
+    public static func view(selection: T?) -> some View {
+        let coordinator = CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>
+        coordinator.typedTabs = Array(T.allCases)
+        coordinator.typedSelectedTab = selection
+        return TabCoordinatorRootView(coordinator: coordinator)
+    }
+    
     /// Creates a view with all cases of the `TabRoutable` enum.
     /// - Returns: A view displaying the tabs.
     public static func view() -> some View {
