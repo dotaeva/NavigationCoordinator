@@ -34,6 +34,24 @@ typealias AppCoordinator = Coordinator<Destination>
 
 ## Použití pro zobrazení
 
+Reprezentace koordinátoru zobrazuje `View` definici `Routable` uvnitř `NavigationStack`. Je-li `root` koordinátoru prázdný, zobrazí `EmptyView()`.
+
+**view(root: Routable)**
+- Nastaví hodnotu `root` a navrátí `View` reprezentaci koordinátoru.
+
+**Použití:**
+```swift
+var body: some Scene {
+    WindowGroup {
+        AppCoordinator.view(root: .home)
+    }
+}
+```
+
+**view()**
+- Navrátí `View` reprezentaci koordinátoru.
+
+**Použití:**
 ```swift
 var body: some Scene {
     WindowGroup {
