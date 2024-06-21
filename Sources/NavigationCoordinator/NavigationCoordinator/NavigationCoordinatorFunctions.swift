@@ -30,8 +30,18 @@ extension NavigationCoordinator {
     }
     
     /// Dismisses the currently presented item or the top-most route.
+    public static func dismiss() {
+        let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
+        if let fullScreenCover = coordinator.typedFullScreenCover {
+            coordinator.typedFullScreenCover = nil
+        } else if let sheet = coordinator.typedSheet {
+            coordinator.typedSheet = nil
+        }
+    }
+    
+    /// Dismisses the currently presented item or the top-most route.
     /// - Returns: The dismissed item or route, if any.
-    public static func dismiss() -> T? {
+    public static func pop() -> T? {
         let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
         if let fullScreenCover = coordinator.typedFullScreenCover {
             coordinator.typedFullScreenCover = nil
