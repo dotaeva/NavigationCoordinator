@@ -13,7 +13,7 @@ public class Coordinator<T: Routable>: CoordinatorBase {
         super.init()
     }
     
-    internal var root: T?
+    public var root: T?
 
     internal var typedPath: [T] {
         get {

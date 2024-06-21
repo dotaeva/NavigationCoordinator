@@ -44,6 +44,20 @@ var body: some Scene {
 
 ## Možnosti použití
 
+### Proměnné
+
+**root**
+```swift
+.root
+```
+- get, set
+
+**path**
+```swift
+.root
+```
+- get
+
 ### Navigace (.route)
 
 **Route:**
@@ -68,7 +82,7 @@ AppCoordinator.present(.count(1), as: .fullScreenCover)
 **dismiss()**
 - Po zavolání vymaže a navrací `Routable` nacházející se na vrcholu `path`.
 
-**Usage:**
+**Použití:**
 ```swift
 AppCoordinator.dismiss()
 ```
@@ -76,7 +90,7 @@ AppCoordinator.dismiss()
 **popToRoot()**
 - Po zavolání vymaže všechny `Routable` z `path`.
 
-**Usage:**
+**Použití:**
 ```swift
 AppCoordinator.popToRoot()
 ```
@@ -84,7 +98,7 @@ AppCoordinator.popToRoot()
 **popToLast(route: Routable)**
 - Po zavolání vymaže všechny `Routable`, dokud nenarazí na hledaný `route`. Pokud se hledaný `route` nenachází v `path`, vyhodí chybu a nepokračuje.
 
-**Usage:**
+**Použití:**
 ```swift
 AppCoordinator.popToLast(.home)
 ```
@@ -92,7 +106,7 @@ AppCoordinator.popToLast(.home)
 **peek()**
 - Po zavolání navrací `Routable` nacházející se na vrcholu `path`.
 
-**Usage:**
+**Použití:**
 ```swift
 if let topRoute = AppCoordinator.peek() {
     print("Top route is: \(topRoute)")
