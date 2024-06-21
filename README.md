@@ -44,20 +44,6 @@ var body: some Scene {
 
 ## Možnosti použití
 
-### Proměnné
-
-**root**
-```swift
-.root
-```
-- get, set
-
-**path**
-```swift
-.root
-```
-- get
-
 ### Navigace (.route)
 
 **Route:**
@@ -111,4 +97,24 @@ AppCoordinator.popToLast(.home)
 if let topRoute = AppCoordinator.peek() {
     print("Top route is: \(topRoute)")
 }
+```
+
+### Proměnné
+
+**root**
+- Proměnná navracející či nastavující `root` koordinátoru typu `<T>`.
+
+**Použití:**
+```swift
+print(AppCoordinator.root)
+AppCoordinator.root = .home
+```
+
+**path**
+- Proměnná navracející `path` koordinátoru typu `<T>`.
+
+**Použití:**
+```swift
+print(AppCoordinator.path)
+AppCoordinator.root = .home
 ```

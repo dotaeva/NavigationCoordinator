@@ -13,16 +13,22 @@ fileprivate struct CoordinatorRootView<T: Routable>: View {
     
     var body: some View {
         NavigationStack(path: $coordinator.typedPath) {
-            coordinator.root?.view
-                .navigationDestination(for: T.self) { destination in
-                    destination.view
+            Group {
+                if let root = coordinator.typedRoot {
+                    root.view
+                } else {
+                    EmptyView()
                 }
-                .sheet(item: $coordinator.typedSheet) { item in
-                    item.view
-                }
-                .fullScreenCover(item: $coordinator.typedFullScreenCover) { item in
-                    item.view
-                }
+            }
+            .navigationDestination(for: T.self) { destination in
+                destination.view
+            }
+            .sheet(item: $coordinator.typedSheet) { item in
+                item.view
+            }
+            .fullScreenCover(item: $coordinator.typedFullScreenCover) { item in
+                item.view
+            }
         }
     }
 }

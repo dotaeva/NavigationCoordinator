@@ -13,7 +13,14 @@ public class Coordinator<T: Routable>: CoordinatorBase {
         super.init()
     }
     
-    public var root: T?
+    internal var typedRoot: T? {
+        get {
+            super.root as? T
+        }
+        set {
+            super.root = newValue
+        }
+    }
 
     internal var typedPath: [T] {
         get {
@@ -44,12 +51,22 @@ public class Coordinator<T: Routable>: CoordinatorBase {
 }
 
 extension Coordinator {
+    /// Returns the current navigation path.
+    /// - Returns: An array representing the current path of type `[T]`.
     public static var path: [T] {
         get {
             CoordinatorManager.coordinator(for: T.self).typedPath
         }
+    }
+    
+    /// Gets or sets the root of the coordinator.
+    /// - Returns: The root of type `T`.
+    public static var root: T? {
+        get {
+            CoordinatorManager.coordinator(for: T.self).typedRoot
+        }
         set {
-            CoordinatorManager.coordinator(for: T.self).typedPath = newValue
+            CoordinatorManager.coordinator(for: T.self).typedRoot = newValue
         }
     }
 }

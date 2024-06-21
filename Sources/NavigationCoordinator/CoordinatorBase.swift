@@ -9,6 +9,7 @@ import Foundation
 
 #if os(iOS)
 public class CoordinatorBase: ObservableObject {
+    @Published public var root: AnyHashable?
     @Published public var path: [AnyHashable] = []
     @Published public var fullScreenCover: AnyHashable?
     @Published public var sheet: AnyHashable?
