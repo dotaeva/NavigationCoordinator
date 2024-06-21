@@ -9,12 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 fileprivate struct TabCoordinatorRootView<T: TabRoutable>: View {
-    @StateObject private var coordinator = CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>
-    
-    init() {
-        let coordinator = CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>
-        coordinator.typedTabs = Array(T.allCases)
-    }
+    @StateObject var coordinator: TabCoordinator<T>
     
     var body: some View {
         TabView(selection: $coordinator.typedSelectedTab) {
@@ -22,6 +17,11 @@ fileprivate struct TabCoordinatorRootView<T: TabRoutable>: View {
                 tab.view
                     .tabItem {
                         tab.tabItemView
+                            .onTapGesture {
+                                print(coordinator.selectedTab)
+                                print(coordinator.typedSelectedTab)
+                                print(tab)
+                            }
                     }
                     .tag(tab)
             }
@@ -33,7 +33,9 @@ extension TabCoordinator {
     /// Creates a view with all cases of the `TabRoutable` enum.
     /// - Returns: A view displaying the tabs.
     public static func view() -> some View {
-        TabCoordinatorRootView<T>()
+        let coordinator = CoordinatorManager.coordinator(for: T.self) as TabCoordinator<T>
+        coordinator.typedTabs = Array(T.allCases)
+        return TabCoordinatorRootView(coordinator: coordinator)
     }
 }
 #endif

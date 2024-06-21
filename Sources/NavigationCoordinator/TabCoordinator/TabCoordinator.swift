@@ -8,7 +8,7 @@
 import SwiftUI
 
 #if os(iOS)
-public class TabCoordinator<T: TabRoutable>: CoordinatorBase where T.AllCases: RandomAccessCollection {
+public class TabCoordinator<T: TabRoutable>: CoordinatorBase {
     required init() {
         super.init()
     }
