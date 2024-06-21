@@ -1,6 +1,6 @@
 //
 //  Routable.swift
-//  ExampleCoordinatorApp
+//  NavigationCoordinator
 //
 //  Created by Alexandr Valíček on 20.06.2024.
 //

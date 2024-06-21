@@ -1,6 +1,6 @@
 //
 //  CoordinatorManager.swift
-//  
+//  NavigationCoordinator
 //
 //  Created by Alexandr Valíček on 21.06.2024.
 //
