@@ -42,5 +42,13 @@ extension Coordinator {
         coordinator.root = root
         return CoordinatorRootView(coordinator: coordinator)
     }
+    
+    /// Creates a view with the Coordinators' root.
+    /// - Parameter root: The root view to set.
+    /// - Returns: A view displaying the root.
+    public static func view() -> some View {
+        let coordinator = CoordinatorManager.coordinator(for: T.self)
+        return CoordinatorRootView(coordinator: coordinator)
+    }
 }
 #endif
