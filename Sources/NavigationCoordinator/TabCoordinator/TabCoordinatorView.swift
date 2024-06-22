@@ -10,10 +10,9 @@ import SwiftUI
 #if os(iOS)
 fileprivate struct TabCoordinatorRootView<T: TabRoutable>: View {
     @StateObject var coordinator: TabCoordinator<T>
-    @State private var selection: T?
 
     var body: some View {
-        TabView(selection: $selection) {
+        TabView(selection: $coordinator.typedSelectedTab) {
             ForEach(coordinator.typedTabs, id: \.self) { tab in
                 tab.view
                     .tabItem {
@@ -21,12 +20,6 @@ fileprivate struct TabCoordinatorRootView<T: TabRoutable>: View {
                     }
                     .tag(tab)
             }
-        }
-        .onChange(of: selection) { newValue in
-            coordinator.typedSelectedTab = newValue
-        }
-        .onAppear {
-            selection = coordinator.typedSelectedTab ?? coordinator.typedTabs.first
         }
     }
 }
