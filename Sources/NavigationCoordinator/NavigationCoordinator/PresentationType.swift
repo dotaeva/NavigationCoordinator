@@ -5,11 +5,11 @@
 //  Created by Alexandr Valíček on 20.06.2024.
 //
 
-import Foundation
+import SwiftUI
 
 #if os(iOS)
 public enum PresentationType {
-    case sheet
+    case sheet(_ detents: [PresentationDetent] = [.large])
     case fullScreenCover
 }
 #endif

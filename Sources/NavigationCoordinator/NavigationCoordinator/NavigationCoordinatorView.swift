@@ -25,6 +25,7 @@ fileprivate struct NavigationCoordinatorRootView<T: Routable>: View {
             }
             .sheet(item: $coordinator.typedSheet) { item in
                 item.view
+                    .presentationDetents(Set(coordinator.sheetDetents))
             }
             .fullScreenCover(item: $coordinator.typedFullScreenCover) { item in
                 item.view

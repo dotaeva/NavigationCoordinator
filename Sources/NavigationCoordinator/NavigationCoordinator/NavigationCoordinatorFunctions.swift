@@ -22,7 +22,8 @@ extension NavigationCoordinator {
     public static func present(_ item: T, as type: PresentationType) {
         let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
         switch type {
-        case .sheet:
+        case .sheet(let detents):
+            coordinator.sheetDetents = detents
             coordinator.typedSheet = item
         case .fullScreenCover:
             coordinator.typedFullScreenCover = item
@@ -35,6 +36,7 @@ extension NavigationCoordinator {
         if coordinator.typedFullScreenCover != nil {
             coordinator.typedFullScreenCover = nil
         } else if coordinator.typedSheet != nil {
+            coordinator.sheetDetents = []
             coordinator.typedSheet = nil
         }
     }

@@ -48,6 +48,8 @@ public class NavigationCoordinator<T: Routable>: CoordinatorBase {
             super.sheet = newValue
         }
     }
+    
+    internal var sheetDetents: [PresentationDetent] = []
 }
 
 extension NavigationCoordinator {
