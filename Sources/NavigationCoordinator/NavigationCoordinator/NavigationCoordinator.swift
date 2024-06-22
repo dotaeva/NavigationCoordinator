@@ -56,9 +56,15 @@ extension NavigationCoordinator {
     /// Returns the current navigation path.
     /// - Returns: An array representing the current path of type `[T]`.
     public static var path: [T] {
-        get {
-            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedPath
-        }
+        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedPath
+    }
+    
+    public static var sheet: T? {
+        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedSheet
+    }
+    
+    public static var fullScreenCover: T? {
+        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedFullScreenCover
     }
     
     /// Gets or sets the root of the coordinator.
