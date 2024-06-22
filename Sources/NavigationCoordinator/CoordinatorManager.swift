@@ -21,12 +21,5 @@ internal class CoordinatorManager {
             return coordinator
         }
     }
-
-    public static func createCoordinator<T: Routable, C: CoordinatorBase>(for type: T.Type) -> C {
-        let key = String(describing: T.self)
-        let coordinator = C()
-        coordinators[key] = coordinator
-        return coordinator
-    }
 }
 #endif
