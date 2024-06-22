@@ -74,11 +74,11 @@ extension NavigationCoordinator {
         }
     }
     
-    /// Returns the top-most route without removing it from the stack.
-    /// - Returns: The top-most route, if any.
+    /// Returns the top-most route without removing it from the stack. If the value does not exist, returns root.
+    /// - Returns: The top-most route, if any. Else returns root.
     public static func peek() -> T? {
         let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
-        return coordinator.typedPath.last
+        return coordinator.typedPath.last ?? coordinator.typedRoot
     }
 }
 #endif
