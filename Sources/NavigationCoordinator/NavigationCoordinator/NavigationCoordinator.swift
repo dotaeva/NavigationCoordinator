@@ -50,6 +50,7 @@ public class NavigationCoordinator<T: Routable>: CoordinatorBase {
     }
     
     internal var sheetDetents: [PresentationDetent] = []
+    internal var onDismiss: (() -> Void)? = nil
 }
 
 extension NavigationCoordinator {

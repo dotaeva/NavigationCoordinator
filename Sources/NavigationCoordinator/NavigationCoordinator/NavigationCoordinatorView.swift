@@ -23,11 +23,11 @@ fileprivate struct NavigationCoordinatorRootView<T: Routable>: View {
             .navigationDestination(for: T.self) { destination in
                 destination.view
             }
-            .sheet(item: $coordinator.typedSheet) { item in
+            .sheet(item: $coordinator.typedSheet, onDismiss: coordinator.onDismiss) { item in
                 item.view
                     .presentationDetents(Set(coordinator.sheetDetents))
             }
-            .fullScreenCover(item: $coordinator.typedFullScreenCover) { item in
+            .fullScreenCover(item: $coordinator.typedFullScreenCover, onDismiss: coordinator.onDismiss) { item in
                 item.view
             }
         }

@@ -19,7 +19,11 @@ extension NavigationCoordinator {
     /// - Parameters:
     ///   - item: The item to present.
     ///   - type: The presentation type (sheet or full-screen cover).
-    public static func present(_ item: T, as type: PresentationType) {
+    public static func present(
+        _ item: T,
+        as type: PresentationType,
+        onDismiss: (() -> Void)? = nil
+    ) {
         let coordinator = CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>
         switch type {
         case .sheet(let detents):
@@ -28,6 +32,8 @@ extension NavigationCoordinator {
         case .fullScreenCover:
             coordinator.typedFullScreenCover = item
         }
+        
+        coordinator.onDismiss = onDismiss
     }
     
     /// Dismisses the currently presented item or the top-most route.
@@ -36,7 +42,6 @@ extension NavigationCoordinator {
         if coordinator.typedFullScreenCover != nil {
             coordinator.typedFullScreenCover = nil
         } else if coordinator.typedSheet != nil {
-            coordinator.sheetDetents = []
             coordinator.typedSheet = nil
         }
     }
