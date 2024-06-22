@@ -1,5 +1,60 @@
 # NavigationCoordinator
 
+## TypeAlias
+
+```swift
+typealias AppCoordinator = NavigationCoordinator<T>
+```
+
+## Variables
+
+### `path`
+Returns the current navigation path.
+
+- **Returns:** An array representing the current path of type `[T]`.
+
+#### Example Usage:
+```swift
+let currentPath = AppCoordinator.path
+```
+
+### `sheet`
+Gets the current sheet.
+
+- **Returns:** The current sheet of type `T`.
+
+#### Example Usage:
+```swift
+if let currentSheet = AppCoordinator.sheet {
+    print("Current sheet: \(currentSheet)")
+}
+```
+
+### `fullScreenCover`
+Gets the current full-screen cover.
+
+- **Returns:** The current full-screen cover of type `T`.
+
+#### Example Usage:
+```swift
+if let currentFullScreenCover = AppCoordinator.fullScreenCover {
+    print("Current full-screen cover: \(currentFullScreenCover)")
+}
+```
+
+### `root`
+Gets or sets the root of the coordinator.
+
+- **Returns:** The root of type `T`.
+
+#### Example Usage:
+```swift
+if let rootView = AppCoordinator.root {
+    print("Root view: \(rootView)")
+}
+AppCoordinator.root = .home
+```
+
 ## Functions
 
 ### `route(to:)`
@@ -105,28 +160,18 @@ let rootView = AppCoordinator.view()
 
 # TabCoordinator
 
-## Functions
+## TypeAlias
+
+```swift
+typealias AppTabCoordinator = NavigationCoordinator<T>
+```
+
+## Variables
 
 ### `tabs`
 Returns the current tabs.
 
 - **Returns:** An array representing the current tabs of type `[T]`.
-
-#### Example Usage:
-```swift
-let currentTabs = AppTabCoordinator.tabs
-```
-
-### `select(tab:)`
-Selects a specific tab.
-
-- **Parameter:**
-  - `tab: T` - The tab to select.
-
-#### Example Usage:
-```swift
-AppTabCoordinator.select(tab: .profile)
-```
 
 ### `selectedTab`
 Returns the selected tab.
@@ -138,6 +183,24 @@ Returns the selected tab.
 if let selectedTab = AppTabCoordinator.selectedTab {
     print("Selected tab: \(selectedTab)")
 }
+```
+
+#### Example Usage:
+```swift
+let currentTabs = AppTabCoordinator.tabs
+```
+
+## Functions
+
+### `select(tab:)`
+Selects a specific tab.
+
+- **Parameter:**
+  - `tab: T` - The tab to select.
+
+#### Example Usage:
+```swift
+AppTabCoordinator.select(tab: .profile)
 ```
 
 ### `view(selection:) -> some View`
