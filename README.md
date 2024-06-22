@@ -1,6 +1,7 @@
 # NavigationCoordinator
 
-## TypeAlias
+## Typealias
+Define `typealias` for easier access thorough the code.
 
 ```swift
 typealias AppCoordinator = NavigationCoordinator<T>
@@ -160,7 +161,8 @@ let rootView = AppCoordinator.view()
 
 # TabCoordinator
 
-## TypeAlias
+## Typealias
+Define `typealias` for easier access thorough the code.
 
 ```swift
 typealias AppTabCoordinator = NavigationCoordinator<T>
