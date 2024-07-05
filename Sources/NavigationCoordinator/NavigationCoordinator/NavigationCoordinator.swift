@@ -13,69 +13,58 @@ public class NavigationCoordinator<T: Routable>: CoordinatorBase {
         super.init()
     }
     
-    internal var typedRoot: T? {
-        get {
-            super.root as? T
-        }
-        set {
-            super.root = newValue
-        }
+    internal var typedRoot: RoutableWrapper<T>? {
+        get { super.root as? RoutableWrapper<T> }
+        set { super.root = newValue }
     }
 
-    internal var typedPath: [T] {
-        get {
-            super.path.compactMap { $0 as? T }
-        }
-        set {
-            super.path = newValue
-        }
+    internal var typedPath: [RoutableWrapper<T>] {
+        get { super.path.compactMap { $0 as? RoutableWrapper<T> } }
+        set { super.path = newValue }
     }
 
-    internal var typedFullScreenCover: T? {
-        get {
-            super.fullScreenCover as? T
-        }
-        set {
-            super.fullScreenCover = newValue
-        }
+    internal var typedFullScreenCover: RoutableWrapper<T>? {
+        get { super.fullScreenCover as? RoutableWrapper<T> }
+        set { super.fullScreenCover = newValue }
     }
 
-    internal var typedSheet: T? {
-        get {
-            super.sheet as? T
-        }
-        set {
-            super.sheet = newValue
-        }
+    internal var typedSheet: RoutableWrapper<T>? {
+        get { super.sheet as? RoutableWrapper<T> }
+        set { super.sheet = newValue }
     }
     
-    internal var sheetDetents: [PresentationDetent] = []
     internal var onDismiss: (() -> Void)? = nil
 }
 
 extension NavigationCoordinator {
-    /// Returns the current navigation path.
+    /// Gets the current navigation path.
     /// - Returns: An array representing the current path of type `[T]`.
     public static var path: [T] {
-        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedPath
+        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedPath.map { $0.wrapped }
     }
     
+    /// Gets the current sheet.
+    /// - Returns: The current sheet of type `T?`.
     public static var sheet: T? {
-        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedSheet
+        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedSheet?.wrapped
     }
     
+    /// Gets the current full-screen cover.
+    /// - Returns: The current full-screen cover of type `T?`.
     public static var fullScreenCover: T? {
-        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedFullScreenCover
+        (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedFullScreenCover?.wrapped
     }
     
     /// Gets or sets the root of the coordinator.
     /// - Returns: The root of type `T`.
     public static var root: T? {
         get {
-            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedRoot
+            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedRoot?.wrapped
         }
         set {
-            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedRoot = newValue
+            (CoordinatorManager.coordinator(for: T.self) as NavigationCoordinator<T>).typedRoot = newValue.map {
+                RoutableWrapper(wrapped: $0, modifier: AnyViewModifier.identity)
+            }
         }
     }
 }

@@ -58,28 +58,36 @@ AppCoordinator.root = .home
 
 ## Functions
 
-### `route(to:)`
+### `route(to:with:)`
 Routes to the specified destination.
 
 - **Parameter:**
   - `destination: T` - The destination to route to.
+  - `view: ((any View) -> any View)?` - An optional closure to modify the view.
 
 #### Example Usage:
 ```swift
 AppCoordinator.route(to: .detail)
+AppCoordinator.route(to: .detail) { view in
+    view.background(Color.red)
+}
 ```
 
-### `present(_:as:onDismiss:)`
+### `present(_:as:onDismiss:with:)`
 Presents the specified item as a sheet or full-screen cover.
 
 - **Parameters:**
   - `item: T` - The item to present.
   - `type: PresentationType` - The presentation type (`sheet` or `fullScreenCover`).
   - `onDismiss: (() -> Void)?` - Optional closure to execute on dismiss.
-
+  - `view: ((any View) -> any View)?` - An optional closure to modify the view.
+  
 #### Example Usage:
 ```swift
 AppCoordinator.present(.count(0), as: .sheet())
+AppCoordinator.present(.count(0), as: .sheet()) { view in
+    view.padding()
+}
 AppCoordinator.present(.count(0), as: .fullScreenCover)
 ```
 

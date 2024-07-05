@@ -1,0 +1,15 @@
+{
+  "originHash" : "a151cbbedcab5f152ba77f43ae82795bc6850d3bd40529c96c4736e42d1b3d07",
+  "pins" : [
+    {
+      "identity" : "navigation-coordinator-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://bitbucket.org/pekostudioteam/navigation-coordinator-ios.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "876586822c8bb75c59146568e322acfc32fbabc9"
+      }
+    }
+  ],
+  "version" : 3
+}

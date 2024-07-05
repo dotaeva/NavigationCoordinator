@@ -9,7 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 public enum PresentationType {
-    case sheet(_ detents: [PresentationDetent] = [.large])
+    case sheet
     case fullScreenCover
 }
 #endif

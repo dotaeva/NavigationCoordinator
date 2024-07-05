@@ -14,21 +14,13 @@ public class TabCoordinator<T: TabRoutable>: CoordinatorBase {
     }
     
     internal var typedTabs: [T] {
-        get {
-            super.tabs.compactMap { $0 as? T }
-        }
-        set {
-            super.tabs = newValue
-        }
+        get { super.tabs.compactMap { $0 as? T } }
+        set { super.tabs = newValue }
     }
     
     internal var typedSelectedTab: T? {
-        get {
-            super.selectedTab as? T
-        }
-        set {
-            super.selectedTab = newValue
-        }
+        get { super.selectedTab as? T }
+        set { super.selectedTab = newValue }
     }
 }
 
